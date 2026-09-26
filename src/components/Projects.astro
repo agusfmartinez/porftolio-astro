@@ -139,6 +139,41 @@ const TAGS = {
 // TODO: validar descripciones de proyectos nuevos y agregar capturas .webp.
 const PROJECTS = [
     {
+        title: 'CuentaKM',
+        date:"Agosto 2026",
+        description: 'App web para llevar el mantenimiento, las cargas de combustible, el seguro y la VTV de uno o varios vehículos. Solo frontend, sin servidor propio: se entra con una cuenta de Google y los datos se guardan en Cloud Firestore, sincronizados entre todos los dispositivos de cada usuario. También se pueden exportar/importar como archivo JSON.',
+        link: 'https://cuentakm.vercel.app',
+        github:'https://github.com/agusfmartinez/app-Vehiculos',
+        image: '/projects/cuentakm.webp',
+        tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.FIREBASE, TAGS.TAILWIND]
+    },
+    {
+        title: 'App Eventos',
+        date:"Agosto 2026",
+        description: 'Sistema de gestión de eventos y control de acceso. Aplicación para un salón de eventos: administrar eventos e invitados, generar invitaciones digitales con QR y controlar el ingreso desde un celular.',
+        github:'https://github.com/agusfmartinez/app-Eventos',
+        image: '/projects/appeventos.webp',
+        tags: [TAGS.NEXT, TAGS.TYPESCRIPT, TAGS.TAILWIND]
+    },
+    {
+        title: 'Unigram',
+        date:"Julio 2026",
+        description: 'Web app para que estudiantes universitarios hagan seguimiento de su carrera académica, importando datos directamente desde el SIU Guaraní (sistema de gestión académica usado en universidades argentinas).',
+        link: 'https://webunigram.vercel.app',
+        github:'https://github.com/agusfmartinez/unigram',
+        image: '/projects/unigram.webp',
+        tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND]
+    },
+    {
+        title: 'ABB Lab',
+        date:"Julio 2026",
+        description: 'Práctica interactiva de Árboles Binarios de Búsqueda (ABB / BST). Aplicación web para aprender y visualizar cómo funciona un Árbol Binario de Búsqueda. Ejecutá cada operación paso a paso, con el árbol dibujado en vivo y una explicación de qué compara el algoritmo y por qué va a la izquierda o a la derecha. Pensada como herramienta de estudio para la materia Estructura de Datos.',
+        link: 'https://abb-lab.vercel.app',
+        github:'https://github.com/agusfmartinez/abbLab',
+        image: '/projects/abblab.webp',
+        tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT]
+    },
+    {
         title: 'App LetterRock',
         date:"Mayo 2026",
         description: 'Aplicación fullstack, Red social para descubrir, opinar y compartir rock nacional argentino. Frontend: React 18 + Vite + Tailwind CSS + TanStack Query + Zustand. Backend: Express.js (ingesta de catálogo). Base de datos: Supabase (Postgres + Auth). APIs: MusicBrainz (catálogo de artistas), Spotify (catlálogo musical, albums, tracks).',
@@ -187,14 +222,6 @@ const PROJECTS = [
         github:'https://github.com/agusfmartinez/whatsapp-notes',
         image: null,
         tags: [TAGS.NEXT, TAGS.TYPESCRIPT, TAGS.TAILWIND]
-    },
-    {
-        title: 'App Gym Routine',
-        date:"Julio 2025",
-        description: 'Aplicación para crear y gestionar rutinas de entrenamiento de gimnasio. Desarrollada con Vite y React, integrando Supabase como proveedor de base de datos tipo PostgreeSQL para crear el modelo de datos y almacenar la informacion correspondiente a los ejercicios, rutinas y progreso del usuario.',
-        github:'https://github.com/agusfmartinez/app-gymRoutine',
-        image: null,
-        tags: [TAGS.REACT, TAGS.SUPABASE]
     },
     {
         title: 'MG Consultoría Legal',
