@@ -30,7 +30,7 @@ const t = useTranslations(getLang(Astro.currentLocale))
 
         </nav>
         <div class="flex mt-4 md:mt-6">
-            <a href="https://drive.google.com/file/d/1r2wCgWS0ljhze0T4LYuzWSaTF_FE3LQd/view?usp=sharing" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">{t.profile.cv}</a>
+            <a href={t.profile.cvUrl} target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">{t.profile.cv}</a>
         </div>
     </div>
 </div>
