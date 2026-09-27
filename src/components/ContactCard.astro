@@ -1,15 +1,18 @@
 ---
 import MailIcon from '../icons/Mail.astro'
+import { getLang, useTranslations } from '../i18n'
+
+const t = useTranslations(getLang(Astro.currentLocale))
 ---
 
 <div class="w-full p-4 text-center border border-white/10  rounded-lg shadow bg-black/20">
-    <h5 class="mb-2 text-3xl text-white font-bold">Trabajemos juntos</h5>
-    <p class="mb-5 text-base text-white/80">Ponte en contacto conmigo si deseas llevar tu negocio al siguiente nivel!</p>
+    <h5 class="mb-2 text-3xl text-white font-bold">{t.contact.title}</h5>
+    <p class="mb-5 text-base text-white/80">{t.contact.text}</p>
     <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
         <a href="mailto:agusfmartinez@outlook.com" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
            <MailIcon class="size-7 me-3"/>
             <div class="text-left rtl:text-right">
-                <div class="mb-1 text-xs">Enviar mail:</div>
+                <div class="mb-1 text-xs">{t.contact.sendMail}</div>
                 <div class="-mt-1 font-sans text-sm font-semibold">agusfmartinez@outlook.com</div>
             </div>
         </a>

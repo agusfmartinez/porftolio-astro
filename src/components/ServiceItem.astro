@@ -1,5 +1,5 @@
 ---
-const {name, description,icon: IconComponent, asunto, mensaje} = Astro.props
+const {name, description,icon: IconComponent, asunto, mensaje, cta} = Astro.props
 ---
 
 <div class="border border-white/10  rounded-lg shadow bg-black/20 hover:bg-white/10 transition">
@@ -8,7 +8,7 @@ const {name, description,icon: IconComponent, asunto, mensaje} = Astro.props
         <h4 class="mb-1 text-xl text-white font-medium text-center">{name}</h4>
         <p class="ms-2 text-center text-white/80 text-xs font-light opacity-80">{description}</p> 
         <div class="flex mt-3">
-            <a href={`mailto:agusfmartinez@outlook.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(mensaje)}`} class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Solicitar servicio</a>
+            <a href={`mailto:agusfmartinez@outlook.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(mensaje)}`} class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">{cta}</a>
         </div>
     </div>
 </div>

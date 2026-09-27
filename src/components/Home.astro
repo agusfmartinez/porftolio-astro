@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Education from './Education.astro'
+import Experience from './Experience.astro'
+import Projects from './Projects.astro'
+import Services from './Services.astro'
+import Contact from './Contact.astro'
+import SectionContainer from './SectionContainer.astro'
+import Aboutme from './Aboutme.astro'
+import UserIcon from '../icons/User.astro'
+import EducationIcon from '../icons/StudyBook.astro'
+import PortfolioIcon from '../icons/Briefcase.astro'
+import ExperienceIcon from '../icons/Building.astro'
+import ServicesIcon from '../icons/Code.astro'
+import ContactIcon from '../icons/Message.astro'
+import { getLang, useTranslations } from '../i18n'
+
+const t = useTranslations(getLang(Astro.currentLocale))
+---
+
+<Layout title={t.meta.title} description={t.meta.description}>
+	<main class="px-4">
+		<SectionContainer class="h-screen py-32 pb-32">
+			<h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">{t.hero.greeting}</h1>
+			<h2 class="text-xl lg:text-2xl text-white/80 text-wrap max-w-[700px]">{t.hero.subtitle}</h2>
+		</SectionContainer>
+
+		<SectionContainer id="sobre-mi" class="pb-12">
+			<h2 class="text-3xl text-white font-semibold mb-6 flex gap-x-3 items-center">
+				<UserIcon class="size-8"/>
+				{t.sections.about}
+			</h2>
+			<Aboutme />
+		</SectionContainer>
+
+		<SectionContainer id="experiencia" class="flex flex-col items-start pb-12">
+			<h2 class="text-3xl text-white font-semibold mb-6 flex gap-x-3 items-center">
+				<ExperienceIcon class="size-8"/>
+				{t.sections.experience}
+			</h2>
+			<Experience />
+		</SectionContainer>
+
+		<SectionContainer id="portfolio">
+			<h2 class="text-3xl text-white font-semibold mb-6 flex gap-x-3 items-center">
+				<PortfolioIcon class="size-8"/>
+				{t.sections.portfolio}
+			</h2>
+			<Projects />
+		</SectionContainer>
+
+		<SectionContainer id="educacion" class="flex flex-col items-start">
+			<h2 class="text-3xl text-white font-semibold mb-6 flex gap-x-3 items-center">
+				<EducationIcon class="size-8"/>
+				{t.sections.education}
+			</h2>
+			<Education />
+		</SectionContainer>
+
+		<SectionContainer id="servicios">
+			<h2 class="text-3xl text-white font-semibold mb-6 flex gap-x-3 items-center">
+				<ServicesIcon class="size-8"/>
+				{t.sections.services}
+			</h2>
+			<Services />
+		</SectionContainer>
+
+		<SectionContainer id="contacto">
+			<h2 class="text-3xl text-white font-semibold mb-6 flex gap-x-3 items-center">
+				<ContactIcon class="size-8"/>
+				{t.sections.contact}
+			</h2>
+			<Contact />
+		</SectionContainer>
+	</main>
+</Layout>

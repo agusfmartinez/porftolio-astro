@@ -9,16 +9,31 @@ import CSSIcon from '../icons/CSS.astro'
 import FlaskIcon from '../icons/Flask.astro'
 import MySQLIcon from '../icons/MySQL.astro'
 import RedisIcon from '../icons/Redis.astro'
+import { getLang, useTranslations, formatMonth } from '../i18n'
 
+const lang = getLang(Astro.currentLocale)
+const t = useTranslations(lang)
+
+// `start`/`end` = 'YYYY-MM'; `end: null` => actualidad.
 const EXPERIENCE = [
     {
-        date: 'Noviembre 2024 - Actualidad',
+        start: '2024-11',
+        end: null,
         company: 'Summant Technologies',
-        role: 'Desarrollador Fullstack Junior',
-        description: 'Desarrollo Fullstack sobre dos líneas de trabajo en paralelo: el producto de RRHH Meta4 y un proyecto a medida para cliente externo.',
+        role: { es: 'Desarrollador Fullstack Junior', en: 'Junior Fullstack Developer' },
+        description: {
+            es: 'Desarrollo Fullstack sobre dos líneas de trabajo en paralelo: el producto de RRHH Meta4 y un proyecto a medida para cliente externo.',
+            en: 'Fullstack development across two parallel workstreams: the Meta4 HR product and a custom project for an external client.',
+        },
         highlights: [
-            'Meta4 (software de gestión de RRHH): modelado de datos y arquitectura de bases de datos, diseño de objetos, métodos y comunicación entre ellos. Desarrollo de módulos y herramientas dentro del framework (backend). Portal web de autoservicio para empleados desarrollado con HTML, CSS y JavaScript, exponiendo módulos desde Meta4 y conectando vía JSP con su librería propia.',
-            'Proyecto a medida (fuera del framework): Automatización de mensajería de WhatsApp integrada con IA: webhook para recepcionar mensajes de usuarios y workers que procesan, integran la IA y envían la respuesta. Para eso se desarrolla un Backend con Flask + Python y Frontend con Django para la gestión del bot por parte del cliente. Modelado de base de datos MySQL e implementación de una API REST con seguridad, autenticación, JWT, gestión de usuarios y mailing. Seguridad de webhooks con firmas HMAC en los headers. Deploy con Docker, administrando entornos de desarrollo (local) y producción (servidor Ubuntu).',
+            {
+                es: 'Meta4 (software de gestión de RRHH): modelado de datos y arquitectura de bases de datos, diseño de objetos, métodos y comunicación entre ellos. Desarrollo de módulos y herramientas dentro del framework (backend). Portal web de autoservicio para empleados desarrollado con HTML, CSS y JavaScript, exponiendo módulos desde Meta4 y conectando vía JSP con su librería propia.',
+                en: 'Meta4 (HR management software): data modeling and database architecture, design of objects, methods and the communication between them. Development of modules and tools within the framework (backend). Employee self-service web portal built with HTML, CSS and JavaScript, exposing Meta4 modules and connecting through JSP with its proprietary library.',
+            },
+            {
+                es: 'Proyecto a medida (fuera del framework): Automatización de mensajería de WhatsApp integrada con IA: webhook para recepcionar mensajes de usuarios y workers que procesan, integran la IA y envían la respuesta. Para eso se desarrolla un Backend con Flask + Python y Frontend con Django para la gestión del bot por parte del cliente. Modelado de base de datos MySQL e implementación de una API REST con seguridad, autenticación, JWT, gestión de usuarios y mailing. Seguridad de webhooks con firmas HMAC en los headers. Deploy con Docker, administrando entornos de desarrollo (local) y producción (servidor Ubuntu).',
+                en: 'Custom project (outside the framework): WhatsApp messaging automation integrated with AI: a webhook that receives user messages and workers that process them, call the AI and send the reply. Built with a Flask + Python backend and a Django frontend for the client to manage the bot. MySQL database modeling and a secure REST API with authentication, JWT, user management and mailing. Webhook security with HMAC signatures in the headers. Deployed with Docker, managing development (local) and production (Ubuntu server) environments.',
+            },
         ],
         stack: ['Python', 'Flask', 'Django', 'MySQL', 'Redis', 'JWT', 'Docker', 'JavaScript', 'HTML', 'CSS', 'Meta4'],
     },
@@ -41,12 +56,12 @@ const STACK_ICONS = {
     {EXPERIENCE.map((exp) => (
         <li class="mb-10 ms-4">
             <div class="absolute w-3 h-3 bg-yellow-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900"></div>
-            <time class="mb-1 text-sm font-normal leading-none text-sky-200/90">{exp.date}</time>
-            <h3 class="text-lg font-semibold text-yellow-200 mt-4">{exp.role} · {exp.company}</h3>
-            <p class="my-3 text-base font-normal text-gray-200 text-pretty">{exp.description}</p>
+            <time class="mb-1 text-sm font-normal leading-none text-sky-200/90">{formatMonth(exp.start, lang)} - {exp.end ? formatMonth(exp.end, lang) : t.experience.present}</time>
+            <h3 class="text-lg font-semibold text-yellow-200 mt-4">{exp.role[lang]} · {exp.company}</h3>
+            <p class="my-3 text-base font-normal text-gray-200 text-pretty">{exp.description[lang]}</p>
             <ul class="list-disc ms-5 mb-4 space-y-2">
                 {exp.highlights.map((item) => (
-                    <li class="text-base font-normal text-gray-200 text-pretty">{item}</li>
+                    <li class="text-base font-normal text-gray-200 text-pretty">{item[lang]}</li>
                 ))}
             </ul>
             <ul class="flex flex-wrap gap-2">

@@ -23,7 +23,10 @@ import NextIcon from '../icons/Next.astro'
 import PlaywrightIcon from '../icons/Playwright.astro'
 import SocketIOIcon from '../icons/SocketIO.astro'
 import CloudflareWorkersIcon from '../icons/CloudflareWorkers.astro'
+import { getLang, useTranslations, formatMonth } from '../i18n'
 
+const lang = getLang(Astro.currentLocale)
+const t = useTranslations(lang)
 
 const TAGS = {
     REACT: {
@@ -134,154 +137,204 @@ const TAGS = {
     }
 }
 
-// `link` = demo en vivo (opcional; omitir o null si el host venció).
-// `image` = captura en /public/projects (null => placeholder "Captura pendiente").
-// TODO: validar descripciones de proyectos nuevos y agregar capturas .webp.
+// `title.es` define el ancla (#id) en ambos idiomas; ProfileDescription enlaza por ese título.
+// `date` = 'YYYY-MM'. `link` = demo en vivo (opcional). `image` = captura en /public/projects (null => placeholder).
 const PROJECTS = [
     {
-        title: 'CuentaKM',
-        date:"Agosto 2026",
-        description: 'App web para llevar el mantenimiento, las cargas de combustible, el seguro y la VTV de uno o varios vehículos. Solo frontend, sin servidor propio: se entra con una cuenta de Google y los datos se guardan en Cloud Firestore, sincronizados entre todos los dispositivos de cada usuario. También se pueden exportar/importar como archivo JSON.',
+        title: { es: 'CuentaKM', en: 'CuentaKM' },
+        date: '2026-08',
+        description: {
+            es: 'App web para llevar el mantenimiento, las cargas de combustible, el seguro y la VTV de uno o varios vehículos. Solo frontend, sin servidor propio: se entra con una cuenta de Google y los datos se guardan en Cloud Firestore, sincronizados entre todos los dispositivos de cada usuario. También se pueden exportar/importar como archivo JSON.',
+            en: 'Web app to track maintenance, fuel refills, insurance and technical inspection (VTV) for one or several vehicles. Frontend only, no custom server: sign in with a Google account and data is stored in Cloud Firestore, synced across all of each user\'s devices. Data can also be exported/imported as a JSON file.',
+        },
         link: 'https://cuentakm.vercel.app',
         github:'https://github.com/agusfmartinez/app-Vehiculos',
         image: '/projects/cuentakm.webp',
         tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.FIREBASE, TAGS.TAILWIND]
     },
     {
-        title: 'App Eventos',
-        date:"Agosto 2026",
-        description: 'Sistema de gestión de eventos y control de acceso. Aplicación para un salón de eventos: administrar eventos e invitados, generar invitaciones digitales con QR y controlar el ingreso desde un celular.',
+        title: { es: 'App Eventos', en: 'Events App' },
+        date: '2026-08',
+        description: {
+            es: 'Sistema de gestión de eventos y control de acceso. Aplicación para un salón de eventos: administrar eventos e invitados, generar invitaciones digitales con QR y controlar el ingreso desde un celular.',
+            en: 'Event management and access control system. Application for an event venue: manage events and guests, generate digital invitations with QR codes and control check-in from a phone.',
+        },
         github:'https://github.com/agusfmartinez/app-Eventos',
         image: '/projects/appeventos.webp',
         tags: [TAGS.NEXT, TAGS.TYPESCRIPT, TAGS.TAILWIND]
     },
     {
-        title: 'Unigram',
-        date:"Julio 2026",
-        description: 'Web app para que estudiantes universitarios hagan seguimiento de su carrera académica, importando datos directamente desde el SIU Guaraní (sistema de gestión académica usado en universidades argentinas).',
+        title: { es: 'Unigram', en: 'Unigram' },
+        date: '2026-07',
+        description: {
+            es: 'Web app para que estudiantes universitarios hagan seguimiento de su carrera académica, importando datos directamente desde el SIU Guaraní (sistema de gestión académica usado en universidades argentinas).',
+            en: 'Web app for university students to track their academic progress, importing data directly from SIU Guaraní (the academic management system used by Argentine universities).',
+        },
         link: 'https://webunigram.vercel.app',
         github:'https://github.com/agusfmartinez/unigram',
         image: '/projects/unigram.webp',
         tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND]
     },
     {
-        title: 'ABB Lab',
-        date:"Julio 2026",
-        description: 'Práctica interactiva de Árboles Binarios de Búsqueda (ABB / BST). Aplicación web para aprender y visualizar cómo funciona un Árbol Binario de Búsqueda. Ejecutá cada operación paso a paso, con el árbol dibujado en vivo y una explicación de qué compara el algoritmo y por qué va a la izquierda o a la derecha. Pensada como herramienta de estudio para la materia Estructura de Datos.',
+        title: { es: 'ABB Lab', en: 'ABB Lab' },
+        date: '2026-07',
+        description: {
+            es: 'Práctica interactiva de Árboles Binarios de Búsqueda (ABB / BST). Aplicación web para aprender y visualizar cómo funciona un Árbol Binario de Búsqueda. Ejecutá cada operación paso a paso, con el árbol dibujado en vivo y una explicación de qué compara el algoritmo y por qué va a la izquierda o a la derecha. Pensada como herramienta de estudio para la materia Estructura de Datos.',
+            en: 'Interactive practice for Binary Search Trees (BST). Web app to learn and visualize how a Binary Search Tree works. Run each operation step by step, with the tree drawn live and an explanation of what the algorithm compares and why it goes left or right. Built as a study tool for the Data Structures course.',
+        },
         link: 'https://abb-lab.vercel.app',
         github:'https://github.com/agusfmartinez/abbLab',
         image: '/projects/abblab.webp',
         tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT]
     },
     {
-        title: 'App LetterRock',
-        date:"Mayo 2026",
+        title: { es: 'App LetterRock', en: 'App LetterRock' },
+        date: '2026-05',
         inProgress: true,
-        description: 'Aplicación fullstack, Red social para descubrir, opinar y compartir rock nacional argentino. Frontend: React 18 + Vite + Tailwind CSS + TanStack Query + Zustand. Backend: Express.js (ingesta de catálogo). Base de datos: Supabase (Postgres + Auth). APIs: MusicBrainz (catálogo de artistas), Spotify (catlálogo musical, albums, tracks).',
+        description: {
+            es: 'Aplicación fullstack, Red social para descubrir, opinar y compartir rock nacional argentino. Frontend: React 18 + Vite + Tailwind CSS + TanStack Query + Zustand. Backend: Express.js (ingesta de catálogo). Base de datos: Supabase (Postgres + Auth). APIs: MusicBrainz (catálogo de artistas), Spotify (catálogo musical, albums, tracks).',
+            en: 'Fullstack application: a social network to discover, review and share Argentine rock music. Frontend: React 18 + Vite + Tailwind CSS + TanStack Query + Zustand. Backend: Express.js (catalog ingestion). Database: Supabase (Postgres + Auth). APIs: MusicBrainz (artist catalog), Spotify (music catalog, albums, tracks).',
+        },
         github:'https://github.com/agusfmartinez/app-LetterRock',
         image: '/projects/letterrock.webp',
         tags: [TAGS.REACT, TAGS.EXPRESS, TAGS.SUPABASE, TAGS.TAILWIND]
     },
     {
-        title: 'WhatsApp CRM',
-        date:"Mayo 2026",
-        description: 'Aplicación de escritorio para gestión de contactos y campañas de WhatsApp. Desarrollado con Electron, React + Vite, Tailwind, SQLite local, Supabase, WhatsApp API provider.',
+        title: { es: 'WhatsApp CRM', en: 'WhatsApp CRM' },
+        date: '2026-05',
+        description: {
+            es: 'Aplicación de escritorio para gestión de contactos y campañas de WhatsApp. Desarrollado con Electron, React + Vite, Tailwind, SQLite local, Supabase, WhatsApp API provider.',
+            en: 'Desktop application for managing WhatsApp contacts and campaigns. Built with Electron, React + Vite, Tailwind, local SQLite, Supabase and a WhatsApp API provider.',
+        },
         github:'https://github.com/agusfmartinez/app-WhatsAppCRM',
         image: '/projects/wspcrm.webp',
         tags: [TAGS.REACT, TAGS.ELECTRON, TAGS.SUPABASE, TAGS.TAILWIND]
     },
     {
-        title: 'Trivia Game',
-        date:"Mayo 2026",
-        description: 'Juego de trivias multiplayer, con salas y jugadores sincronizados a través de código de invitación. Desarrollado como proyecto fullstack con frontend React + Vite y backend Node.js + Express + Socket.IO con API REST. Gestión de preguntas, puntajes y partidas.',
+        title: { es: 'Trivia Game', en: 'Trivia Game' },
+        date: '2026-05',
+        description: {
+            es: 'Juego de trivias multiplayer, con salas y jugadores sincronizados a través de código de invitación. Desarrollado como proyecto fullstack con frontend React + Vite y backend Node.js + Express + Socket.IO con API REST. Gestión de preguntas, puntajes y partidas.',
+            en: 'Multiplayer trivia game with rooms and players synced through an invite code. Built as a fullstack project with a React + Vite frontend and a Node.js + Express + Socket.IO backend with a REST API. Question, score and match management.',
+        },
         github:'https://github.com/agusfmartinez/triviaGame-frontend',
         image: '/projects/triviazo.webp',
         tags: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.NODE, TAGS.EXPRESS, TAGS.SOCKETIO]
     },
     {
-        title: 'Agente Personal WhatsApp',
-        date:"Abril 2026",
+        title: { es: 'Agente Personal WhatsApp', en: 'Personal WhatsApp Agent' },
+        date: '2026-04',
         inProgress: true,
-        description: 'Agente conversacional de WhatsApp desarrollado con TypeScript. Procesamiento de mensajes e integración de la API de WhatsApp. Integración de IA para el procesamiento de respuestas utilizando OpenRouter. Deploy en Cloudflare Workers.',
+        description: {
+            es: 'Agente conversacional de WhatsApp desarrollado con TypeScript. Procesamiento de mensajes e integración de la API de WhatsApp. Integración de IA para el procesamiento de respuestas utilizando OpenRouter. Deploy en Cloudflare Workers.',
+            en: 'Conversational WhatsApp agent built with TypeScript. Message processing and WhatsApp API integration. AI integration for generating responses using OpenRouter. Deployed on Cloudflare Workers.',
+        },
         github:'https://github.com/agusfmartinez/agente-Whatsapp',
         image: '/projects/agentewhatsapp.webp',
         tags: [TAGS.TYPESCRIPT, TAGS.CLOUDFLARE, TAGS.SUPABASE]
     },
     {
-        title: 'App Bonos CAI',
-        date:"Octubre 2025",
-        description: 'Aplicación fullstack para ejecutar automatizaciones locales de canje de bonos, con frontend, backend y versión de escritorio. Desarrollada con Electron + React + Vite + Playwright + Node.js + Supabase. La aplicación se divide en tres capas principales: Desktop Proceso principal de Electron que Orquesta la automatización. Backend Servicio remoto (Node + Supabase) utilizado para Autenticación y Whitelist. Frontend Panel de administrador, registro a la aplicación y acceso a la descarga de la misma.',
+        title: { es: 'App Bonos CAI', en: 'App Bonos CAI' },
+        date: '2025-10',
+        description: {
+            es: 'Aplicación fullstack para ejecutar automatizaciones locales de canje de bonos, con frontend, backend y versión de escritorio. Desarrollada con Electron + React + Vite + Playwright + Node.js + Supabase. La aplicación se divide en tres capas principales: Desktop Proceso principal de Electron que Orquesta la automatización. Backend Servicio remoto (Node + Supabase) utilizado para Autenticación y Whitelist. Frontend Panel de administrador, registro a la aplicación y acceso a la descarga de la misma.',
+            en: 'Fullstack application to run local voucher-redemption automations, with frontend, backend and desktop version. Built with Electron + React + Vite + Playwright + Node.js + Supabase. The app is split into three main layers: Desktop, the Electron main process that orchestrates the automation. Backend, a remote service (Node + Supabase) used for authentication and whitelisting. Frontend, the admin panel, app sign-up and download access.',
+        },
         link: 'https://botbonoscai.vercel.app',
         github:'https://github.com/agusfmartinez/app-bonosCai-desktop',
         image: '/projects/appbonoscai.webp',
         tags: [TAGS.ELECTRON, TAGS.REACT, TAGS.NODE, TAGS.SUPABASE, TAGS.PLAYWRIGHT]
     },
     {
-        title: 'WhatsApp Notes',
-        date:"Agosto 2025",
-        description: 'Bloc de notas con interfaz estilo WhatsApp. Desarrollada con Next.js 15 + TypeScript + TailwindCSS + shadcn/ui. Funciona como PWA (Progressive Web App), lo que permite instalarla en el celular desde el navegador. No requiere usuarios ni registros: todo se guarda en el almacenamiento local (localStorage) del dispositivo. Inspirada en el diseño de WhatsApp para una experiencia intuitiva.',
+        title: { es: 'WhatsApp Notes', en: 'WhatsApp Notes' },
+        date: '2025-08',
+        description: {
+            es: 'Bloc de notas con interfaz estilo WhatsApp. Desarrollada con Next.js 15 + TypeScript + TailwindCSS + shadcn/ui. Funciona como PWA (Progressive Web App), lo que permite instalarla en el celular desde el navegador. No requiere usuarios ni registros: todo se guarda en el almacenamiento local (localStorage) del dispositivo. Inspirada en el diseño de WhatsApp para una experiencia intuitiva.',
+            en: 'Notepad with a WhatsApp-style interface. Built with Next.js 15 + TypeScript + TailwindCSS + shadcn/ui. Works as a PWA (Progressive Web App), so it can be installed on your phone from the browser. No users or sign-up required: everything is stored in the device\'s local storage (localStorage). Inspired by WhatsApp\'s design for an intuitive experience.',
+        },
         link: 'https://whatsapp-notes.vercel.app',
         github:'https://github.com/agusfmartinez/whatsapp-notes',
         image: '/projects/whatsappnotes.webp',
         tags: [TAGS.NEXT, TAGS.TYPESCRIPT, TAGS.TAILWIND]
     },
     {
-        title: 'MG Consultoría Legal',
-        date:"Abril 2025",
-        description: 'Sitio web institucional para consultora legal. Desarrollado con Astro y Tailwind CSS, optimizado para rendimiento y SEO.',
+        title: { es: 'MG Consultoría Legal', en: 'MG Consultoría Legal' },
+        date: '2025-04',
+        description: {
+            es: 'Sitio web institucional para consultora legal. Desarrollado con Astro y Tailwind CSS, optimizado para rendimiento y SEO.',
+            en: 'Corporate website for a legal consulting firm. Built with Astro and Tailwind CSS, optimized for performance and SEO.',
+        },
         link: 'https://mg-consultoria-legal.vercel.app',
         github:'https://github.com/agusfmartinez/MG-consultoria-legal',
         image: '/projects/mgconsultoria.webp',
         tags: [TAGS.ASTRO, TAGS.TAILWIND]
     },
     {
-        title: 'Proyecto Ecommerce Backend',
-        date:"Agosto 2024",
-        description: 'App e-commerce desarrollada para proyecto final del curso de Desarrollo Backend Node. Está construida con Node.js, Express, y MongoDB, incorporando testing con Mocha y Chai, y utilizando Handlebars para el frontend. Implementa autenticación y autorización de usuarios mediante JWT y Passport. La aplicación permite registrar usuarios, mostrar un listado de productos, asignar un carrito y finalizar compras, enviando una notificación de ticket de compra con Nodemailer. También incluye roles de administrador para realizar CRUD de productos, pasarelas de pago, subida de imágenes y documentos con Multer, y un chat con Socket.io. Además, ofrece una API REST estructurada en capas DAO para gestionar los datos de forma eficiente.',
+        title: { es: 'Proyecto Ecommerce Backend', en: 'Ecommerce Backend Project' },
+        date: '2024-08',
+        description: {
+            es: 'App e-commerce desarrollada para proyecto final del curso de Desarrollo Backend Node. Está construida con Node.js, Express, y MongoDB, incorporando testing con Mocha y Chai, y utilizando Handlebars para el frontend. Implementa autenticación y autorización de usuarios mediante JWT y Passport. La aplicación permite registrar usuarios, mostrar un listado de productos, asignar un carrito y finalizar compras, enviando una notificación de ticket de compra con Nodemailer. También incluye roles de administrador para realizar CRUD de productos, pasarelas de pago, subida de imágenes y documentos con Multer, y un chat con Socket.io. Además, ofrece una API REST estructurada en capas DAO para gestionar los datos de forma eficiente.',
+            en: 'E-commerce app developed as the final project of the Node Backend Development course. Built with Node.js, Express and MongoDB, with testing using Mocha and Chai, and Handlebars for the frontend. Implements user authentication and authorization with JWT and Passport. Users can register, browse a product list, get a cart and complete purchases, receiving a purchase ticket notification via Nodemailer. It also includes admin roles for product CRUD, payment gateways, image and document uploads with Multer, and a chat with Socket.io. It also provides a REST API structured in DAO layers to manage data efficiently.',
+        },
         github:'https://github.com/agusfmartinez/Proyecto-Final-Backend',
         image: '/projects/backendPF.webp',
         tags: [TAGS.MONGO, TAGS.EXPRESS, TAGS.NODE]
     },
     {
-        title: 'Tienda de Curiosidades de Watto',
-        date:"Febrero 2024",
-        description: 'App e-commerce desarrollada con ReactJs para proyecto final del curso de Desarrollo Frontend React. Conexión con Firebase y Firestore.',
+        title: { es: 'Tienda de Curiosidades de Watto', en: "Watto's Curiosity Shop" },
+        date: '2024-02',
+        description: {
+            es: 'App e-commerce desarrollada con ReactJs para proyecto final del curso de Desarrollo Frontend React. Conexión con Firebase y Firestore.',
+            en: 'E-commerce app built with ReactJs as the final project of the React Frontend Development course. Connected to Firebase and Firestore.',
+        },
         link: 'https://star-wars-store.vercel.app',
         github:'https://github.com/agusfmartinez/StarWars-Store',
         image: '/projects/swstore.webp',
         tags: [TAGS.REACT, TAGS.BOOTSTRAP, TAGS.FIREBASE]
     },
     {
-        title: 'Ojitos Turcos: Amuletos de Protección',
-        date:"Diciembre 2023",
-        description: 'App e-commerce desarrollada con JavaScript para proyecto final del curso de Programación JavaScript.',
+        title: { es: 'Ojitos Turcos: Amuletos de Protección', en: 'Ojitos Turcos: Protection Amulets' },
+        date: '2023-12',
+        description: {
+            es: 'App e-commerce desarrollada con JavaScript para proyecto final del curso de Programación JavaScript.',
+            en: 'E-commerce app built with JavaScript as the final project of the JavaScript Programming course.',
+        },
         link: 'https://ojitos-turcos-proyect.vercel.app/',
         github:'https://github.com/agusfmartinez/OjitosTurcos-Proyect',
         image: '/projects/ojitosturcos.webp',
         tags: [TAGS.HTML, TAGS.JAVASCRIPT, TAGS.SASS]
     },
     {
-        title: 'Rocanroles Argentinos',
-        date:"Octubre 2023",
-        description: 'Sitio web desarrollado para proyecto final del curso de Desarrollo Web. Maquetación HTML, estilos con Sass y Bootstrap.',
+        title: { es: 'Rocanroles Argentinos', en: 'Rocanroles Argentinos' },
+        date: '2023-10',
+        description: {
+            es: 'Sitio web desarrollado para proyecto final del curso de Desarrollo Web. Maquetación HTML, estilos con Sass y Bootstrap.',
+            en: 'Website developed as the final project of the Web Development course. HTML layout, styled with Sass and Bootstrap.',
+        },
         link: 'https://agusfmartinez.github.io/PF-MartinezAgustinFelix/',
         github:'https://github.com/agusfmartinez/PF-MartinezAgustinFelix',
         image: '/projects/rocanrolesarg.webp',
         tags: [TAGS.HTML, TAGS.SASS, TAGS.BOOTSTRAP]
     },
     {
-        title: 'App Presupuestos',
-        date:"Diciembre 2021",
-        description: 'App desarrollada con JavaScript, simulador de presupuestos con ingresos y egresos.',
+        title: { es: 'App Presupuestos', en: 'Budget App' },
+        date: '2021-12',
+        description: {
+            es: 'App desarrollada con JavaScript, simulador de presupuestos con ingresos y egresos.',
+            en: 'App built with JavaScript: a budget simulator with income and expenses.',
+        },
         link: 'https://agusfmartinez.github.io/appPresupuestos/',
         github:'https://github.com/agusfmartinez/appPresupuestos',
         image: '/projects/appPresupuestos.webp',
         tags: [TAGS.HTML,TAGS.CSS ,TAGS.JAVASCRIPT]
     },
     {
-        title: 'App Reloj Local',
-        date:"Diciembre 2021",
-        description: 'App desarrollada con JavaScript, simulador de reloj que obtiene datos según la hora local.',
+        title: { es: 'App Reloj Local', en: 'Local Clock App' },
+        date: '2021-12',
+        description: {
+            es: 'App desarrollada con JavaScript, simulador de reloj que obtiene datos según la hora local.',
+            en: 'App built with JavaScript: a clock simulator that reads the local time.',
+        },
         link: 'https://agusfmartinez.github.io/appRelojLocal/',
         github:'https://github.com/agusfmartinez/appRelojLocal',
         image: '/projects/appReloj.webp',
@@ -297,24 +350,28 @@ const slugify = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]
 ---
 <div class="grid md:grid-cols-2 gap-8 my-4 ">
     {
-        PROJECTS.map(({title,date, description, tags, image, link, github, inProgress }) => (
-            <div id={slugify(title)} class="scroll-mt-24">
+        PROJECTS.map(({ title: localizedTitle, date, description: localizedDescription, tags, image, link, github, inProgress }) => {
+            const title = localizedTitle[lang]
+            const description = localizedDescription[lang]
+            const alt = `${t.projects.screenshotAlt} ${title}`
+            return (
+            <div id={slugify(localizedTitle.es)} class="scroll-mt-24">
                 <div class="flex items-center gap-x-2 flex-wrap mb-2">
                     <h3 class="text-2xl font-semibold text-yellow-200">{title}</h3>
                     {inProgress && (
                         <span class="rounded-full text-xs bg-amber-400/20 text-amber-300 border border-amber-400/40 py-1 px-2 font-medium">
-                            En desarrollo
+                            {t.projects.inProgress}
                         </span>
                     )}
                 </div>
-                <p class="ms-2 mb-2 text-xs font-light opacity-80">{date}</p>
+                <p class="ms-2 mb-2 text-xs font-light opacity-80">{formatMonth(date, lang)}</p>
                 {image ? (
-                    <button type="button" class="zoomable-trigger block w-full p-0 border-0 bg-transparent cursor-zoom-in" data-image={image} data-alt={`Captura de pantalla del proyecto ${title}`}>
-                        <img loading="lazy" class="rounded shadow-2xl shadow-white/10 mb-4 hover:scale-110 hover:bg-white/10 transition" src={image} alt={`Captura de pantalla del proyecto ${title}`} />
+                    <button type="button" class="zoomable-trigger block w-full p-0 border-0 bg-transparent cursor-zoom-in" data-image={image} data-alt={alt}>
+                        <img loading="lazy" class="rounded shadow-2xl shadow-white/10 mb-4 hover:scale-110 hover:bg-white/10 transition" src={image} alt={alt} />
                     </button>
                 ) : (
                     <div class="rounded shadow-2xl shadow-white/10 mb-4 aspect-video flex items-center justify-center bg-white/5 border border-white/10 text-white/40 text-sm">
-                        Captura pendiente
+                        {t.projects.screenshotPending}
                     </div>
                 )}
                 <ul class="flex gap-x-2 flex-row flex-wrap">
@@ -324,13 +381,13 @@ const slugify = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]
                                 <tag.icon class="size-6" />
                                 {tag.name}
                             </span>
-                            
+
                         </li>
                     ))}
                 </ul>
                 <p class="description text-lg text-white mb-4 text-pretty" data-full={description}>{description}</p>
                 {description.length > maxLength && (
-                <a href="#" class="see-more text-blue-500">Ver más</a>
+                <a href="#" class="see-more text-blue-500" data-more={t.projects.seeMore} data-less={t.projects.seeLess}>{t.projects.seeMore}</a>
                 )}
 
                 <nav class="flex gap-4 mt-2 items-center">
@@ -346,9 +403,10 @@ const slugify = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]
                 </SocialBadge>
 
             </nav>
-                 
+
             </div>
-        ))
+            )
+        })
     }
 </div>
 
@@ -367,18 +425,20 @@ const slugify = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]
             descriptionElement.textContent = truncatedText;
             const seeMoreLink = descriptionElement.nextElementSibling
             if(seeMoreLink){
+                const moreLabel = seeMoreLink.getAttribute('data-more') ?? ''
+                const lessLabel = seeMoreLink.getAttribute('data-less') ?? ''
                 seeMoreLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (descriptionElement.textContent === truncatedText) {
                     descriptionElement.textContent = fullText;
-                    seeMoreLink.textContent = "Ver menos";
+                    seeMoreLink.textContent = lessLabel;
                 } else {
                     descriptionElement.textContent = truncatedText;
-                    seeMoreLink.textContent = "Ver más";
+                    seeMoreLink.textContent = moreLabel;
                 }
                 });
             }
-            
+
         }
 
     })

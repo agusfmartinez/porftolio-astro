@@ -3,38 +3,47 @@ import ServiceItem from './ServiceItem.astro'
 import WebDesignIcon from '../icons/WebDesign.astro'
 import GraphicDesignIcon from '../icons/GraphicDesign.astro'
 import WebDevIcon from '../icons/WebDev.astro'
+import { getLang, useTranslations } from '../i18n'
+
+const lang = getLang(Astro.currentLocale)
+const t = useTranslations(lang)
 
 const SERVICES = [
     {
-        name: "Diseño Web",
-        description: "Diseño tu sitio web personalizado y adaptado para los dispositivos más utilizados en la actualidad.",
-        icon:WebDesignIcon,
-        asunto:"Solicitud servicio - Diseño Web",
-        mensaje:"Buenas tardes, me pongo en contacto para solicitar sus servicios de Diseño Web... {Favor de adjuntar su información de contacto de ser necesario}"
+        name: { es: "Diseño Web", en: "Web Design" },
+        description: {
+            es: "Diseño tu sitio web personalizado y adaptado para los dispositivos más utilizados en la actualidad.",
+            en: "Custom website design, adapted to today's most used devices.",
+        },
+        icon: WebDesignIcon,
     },
     {
-        name: "Diseño Gráfico",
-        description: "Diseño gráfico personalizado a demanda para branding, logotipos y redes sociales.",
-        icon:GraphicDesignIcon,
-        asunto:"Solicitud servicio - Diseño Gráfico",
-        mensaje:"Buenas tardes, me pongo en contacto para solicitar sus servicios de Diseño Gráfico... {Favor de adjuntar su información de contacto de ser necesario}"
-    
+        name: { es: "Diseño Gráfico", en: "Graphic Design" },
+        description: {
+            es: "Diseño gráfico personalizado a demanda para branding, logotipos y redes sociales.",
+            en: "Custom on-demand graphic design for branding, logos and social media.",
+        },
+        icon: GraphicDesignIcon,
     },
     {
-        name: "Desarrollo Web",
-        description: "Desarrollo avanzado de aplicaciones web incluyendo tareas de diseño web y programación.",
-        icon:WebDevIcon,
-        asunto:"Solicitud servicio - Desarrollo Web",
-        mensaje:"Buenas tardes, me pongo en contacto para solicitar sus servicios de Desarrollo Web... {Favor de adjuntar su información de contacto de ser necesario}"
-    
+        name: { es: "Desarrollo Web", en: "Web Development" },
+        description: {
+            es: "Desarrollo avanzado de aplicaciones web incluyendo tareas de diseño web y programación.",
+            en: "Advanced web application development, including web design and programming.",
+        },
+        icon: WebDevIcon,
     }
 ]
 ---
 <div class="grid md:grid-cols-3 gap-4 my-4 ">
-    {SERVICES.map((service) => (
-        
-        <ServiceItem {... service} />
-        
-        )) }   
-
+    {SERVICES.map(({ name, description, icon }) => (
+        <ServiceItem
+            name={name[lang]}
+            description={description[lang]}
+            icon={icon}
+            asunto={t.services.subjectPrefix + name[lang]}
+            mensaje={t.services.body(name[lang])}
+            cta={t.services.request}
+        />
+    )) }
 </div>

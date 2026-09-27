@@ -1,70 +1,104 @@
 ---
 import EducationItem from "./EducationItem.astro"
+import { getLang, useTranslations, formatMonth } from '../i18n'
 
+const lang = getLang(Astro.currentLocale)
+const t = useTranslations(lang)
+
+// `date` = 'YYYY-MM'
 const EDUCATION = [
     {
-        date: 'Agosto 2024',
-        title: 'Desarrollo Fullstack',
-        description: 'Carrera de Desarrollador Fullstack MERN. Diseño y desarrollo de aplicaciones web completas, desde la creación de bases de datos con MongoDB hasta la implementación de interfaces dinámicas con ReactJs. Durante la diplomatura, adquirí habilidades para construir soluciones escalables, realizar integración de APIs REST, y manejar tanto Frontend como Backend de manera eficiente',
+        date: '2024-08',
+        title: { es: 'Desarrollo Fullstack', en: 'Fullstack Development' },
+        description: {
+            es: 'Carrera de Desarrollador Fullstack MERN. Diseño y desarrollo de aplicaciones web completas, desde la creación de bases de datos con MongoDB hasta la implementación de interfaces dinámicas con ReactJs. Durante la diplomatura, adquirí habilidades para construir soluciones escalables, realizar integración de APIs REST, y manejar tanto Frontend como Backend de manera eficiente',
+            en: 'MERN Fullstack Developer program. Design and development of complete web applications, from building databases with MongoDB to implementing dynamic interfaces with ReactJs. During the program I gained the skills to build scalable solutions, integrate REST APIs, and handle both Frontend and Backend efficiently.',
+        },
         link: 'https://www.coderhouse.com/ar/certificados/66e99187c8ac4c2a9de57083?lang=es',
     },
     {
-        date: 'Agosto 2024',
-        title: 'Desarrollo Backend NodeJs',
-        description: 'Curso de Desarrollador Backend con NodeJs. Desarrollo de aplicaciones modernas con NodeJs y MongoDB, programando con JavaScript del lado del servidor. Integración de sistema de autenticación y autorizacion para gestionar usuarios de forma segura, implementando una arquitectura profesional en mis aplicaciones. Testing desde pruebas unitarias hasta evaluación avanzada de funcionalidades. Por último, conceptos como mocks, versionado, gestión de paquetes, logs, debug y profiling para optimizar el rendimiento. Escalabilidad con clusters y kubernetes, configuración y documentación de API REST.',
+        date: '2024-08',
+        title: { es: 'Desarrollo Backend NodeJs', en: 'Backend Development with NodeJs' },
+        description: {
+            es: 'Curso de Desarrollador Backend con NodeJs. Desarrollo de aplicaciones modernas con NodeJs y MongoDB, programando con JavaScript del lado del servidor. Integración de sistema de autenticación y autorizacion para gestionar usuarios de forma segura, implementando una arquitectura profesional en mis aplicaciones. Testing desde pruebas unitarias hasta evaluación avanzada de funcionalidades. Por último, conceptos como mocks, versionado, gestión de paquetes, logs, debug y profiling para optimizar el rendimiento. Escalabilidad con clusters y kubernetes, configuración y documentación de API REST.',
+            en: 'Backend Developer course with NodeJs. Building modern applications with NodeJs and MongoDB, writing server-side JavaScript. Authentication and authorization systems to manage users securely, applying a professional architecture to my applications. Testing, from unit tests to advanced functional evaluation. Also mocks, versioning, package management, logging, debugging and profiling to optimize performance. Scalability with clusters and Kubernetes, REST API configuration and documentation.',
+        },
         link: 'https://www.coderhouse.com/ar/certificados/66e27359a9ac484fc1e248de?lang=es',
     },
     {
-        date: 'Febrero 2024',
-        title: 'Desarrollo Frontend React',
-        description: 'Carrera de Desarrollador Frontend con el Framework ReactJs',
+        date: '2024-02',
+        title: { es: 'Desarrollo Frontend React', en: 'Frontend Development with React' },
+        description: {
+            es: 'Carrera de Desarrollador Frontend con el Framework ReactJs',
+            en: 'Frontend Developer program with the ReactJs framework.',
+        },
         link: 'https://www.coderhouse.com/ar/certificados/65d85c8abf150d132f232d12?lang=es',
     },
     {
-        date: 'Febrero 2024',
-        title: 'Programador ReactJs',
-        description: 'Curso de Programación ReactJs. Programación por componentes mediante JavaScript ES6. Manejo de rutas utilizando Firebase, utilización del virtual DOM. Creación de aplicaciones SPA.',
+        date: '2024-02',
+        title: { es: 'Programador ReactJs', en: 'ReactJs Programmer' },
+        description: {
+            es: 'Curso de Programación ReactJs. Programación por componentes mediante JavaScript ES6. Manejo de rutas utilizando Firebase, utilización del virtual DOM. Creación de aplicaciones SPA.',
+            en: 'ReactJs programming course. Component-based programming with JavaScript ES6. Routing and Firebase integration, use of the virtual DOM. Building SPA applications.',
+        },
         link: 'https://www.coderhouse.com/ar/certificados/65d85c8abf150d3bb0232d07?lang=es',
     },
     {
-        date: 'Diciembre 2023',
-        title: 'Programador JavaScript',
-        description: 'Curso de Programación JavaScript orientado en el Desarrollo Web. Manejo de eventos, storage, librerias, asincronía y promesas, AJAX.',
+        date: '2023-12',
+        title: { es: 'Programador JavaScript', en: 'JavaScript Programmer' },
+        description: {
+            es: 'Curso de Programación JavaScript orientado en el Desarrollo Web. Manejo de eventos, storage, librerias, asincronía y promesas, AJAX.',
+            en: 'JavaScript programming course focused on Web Development. Events, storage, libraries, asynchrony and promises, AJAX.',
+        },
         link: 'https://www.coderhouse.com/ar/certificados/65a7164c06ff354c764bdb61?lang=es',
     },
     {
-        date: 'Octubre 2023',
-        title: 'Desarrollador Web',
-        description: 'Curso de Desarrollo Web con HTML, CSS. Uso de librería Bootstrap, control de versiones con GIT, técnicas de SEO.',
+        date: '2023-10',
+        title: { es: 'Desarrollador Web', en: 'Web Developer' },
+        description: {
+            es: 'Curso de Desarrollo Web con HTML, CSS. Uso de librería Bootstrap, control de versiones con GIT, técnicas de SEO.',
+            en: 'Web Development course with HTML and CSS. Bootstrap library, version control with Git, SEO techniques.',
+        },
         link: 'https://www.coderhouse.com/ar/certificados/65317af41b6e5e3640e600da?lang=es',
     },
     {
-        date: 'Octubre 2023',
-        title: 'Diseño UX/UI con Figma',
-        description: 'Curso de Diseño UX/UI usando la herramienta Figma.'
+        date: '2023-10',
+        title: { es: 'Diseño UX/UI con Figma', en: 'UX/UI Design with Figma' },
+        description: {
+            es: 'Curso de Diseño UX/UI usando la herramienta Figma.',
+            en: 'UX/UI Design course using Figma.',
+        },
     },
     {
-        date: 'Diciembre 2021',
-        title: 'Frontend Web Developer',
-        description: 'Curso introductorio Desarrollo Frontend con HTML, CSS y JavaScript.',
+        date: '2021-12',
+        title: { es: 'Frontend Web Developer', en: 'Frontend Web Developer' },
+        description: {
+            es: 'Curso introductorio Desarrollo Frontend con HTML, CSS y JavaScript.',
+            en: 'Introductory Frontend Development course with HTML, CSS and JavaScript.',
+        },
         link: 'https://www.udemy.com/certificate/UC-310059e9-a68f-49a2-80fe-e51e32997b3e/',
     },
     {
-        date: 'Marzo 2021',
-        title: 'Cisco: IT Essentials',
-        description: 'Curso dictado por Cisco, orientado al Soporte Informático. Instalación de componentes de PC, Mantenimiento preventivo, Resolución de problemas, Instalación de Sistemas Operativos. Redes, virtualización y computación en nube',
+        date: '2021-03',
+        title: { es: 'Cisco: IT Essentials', en: 'Cisco: IT Essentials' },
+        description: {
+            es: 'Curso dictado por Cisco, orientado al Soporte Informático. Instalación de componentes de PC, Mantenimiento preventivo, Resolución de problemas, Instalación de Sistemas Operativos. Redes, virtualización y computación en nube',
+            en: 'Cisco course focused on IT Support. PC component installation, preventive maintenance, troubleshooting, operating system installation. Networking, virtualization and cloud computing.',
+        },
         link: 'https://drive.google.com/file/d/1GBFMmufBzI0a6kajqLXC_gBkUtWTgyNC/view?usp=drive_link',
     }
-
 ]
 ---
-<ol class="relative border-s border-gray-200 ml-4">   
-    
-    {EDUCATION.map((education) => (
+<ol class="relative border-s border-gray-200 ml-4">
+    {EDUCATION.map(({ date, title, description, link }) => (
     <li class="mb-10 ms-4">
-        <EducationItem {... education} />
+        <EducationItem
+            date={formatMonth(date, lang)}
+            title={title[lang]}
+            description={description[lang]}
+            link={link}
+            certificateLabel={t.education.certificate}
+        />
     </li>
-    )) }              
-    
+    )) }
 </ol>
-
